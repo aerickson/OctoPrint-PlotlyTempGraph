@@ -38,7 +38,38 @@ $(function() {
 			showlegend: false,
 			/* legend: {"orientation": "h"}, */
 			xaxis: { type:"date", tickformat:"%H:%M:%S", automargin: true, title: {standoff: 0}, linecolor: 'black', linewidth: 2, mirror: true },
-			yaxis: { type:"linear", automargin: true, title: {standoff: 0}, linecolor: 'black', linewidth: 2, mirror: true, autorange: true },
+			yaxis: {
+				title: 'Temperature (°C)',
+				side: 'left',
+				type: "linear",
+				automargin: true,
+				linecolor: 'black',
+				linewidth: 2,
+				mirror: true,
+				autorange: true
+			},
+			yaxis2: {
+				title: 'AQI (1-5)',
+				overlaying: 'y',
+				side: 'right',
+				range: [0, 6], // Fixed range for AQI
+				type: "linear",
+				automargin: true,
+				linecolor: 'black',
+				linewidth: 2,
+				mirror: true
+			},
+			yaxis3: {
+				title: 'TVOC (ppb) / eCO2 (ppm)',
+				overlaying: 'y',
+				side: 'right',
+				position: 0.85, // Offset from right edge
+				type: "linear",
+				automargin: true,
+				linecolor: 'black',
+				linewidth: 2,
+				mirror: true
+			},
 			margin: { l:35, r:30, b:0, t:20, pad:5 },
 			images: [{"source": "/static/img/graph-background.png",
 					"xref": "paper",
