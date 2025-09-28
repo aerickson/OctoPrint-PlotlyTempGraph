@@ -32,34 +32,7 @@ $(function() {
         ];
 
 		// plotly graphing related stuff
-		const now = new Date();
-        const dummyX = [now, new Date(now.getTime() + 60000), new Date(now.getTime() + 120000)];
-		self.data = [
-    {
-        name: 'Temperature',
-        x: dummyX,
-        y: [20, 25, 30],
-        yaxis: 'y',
-        mode: 'lines',
-        line: {color: '#1f77b4'}
-    },
-    {
-        name: 'AQI',
-        x: dummyX,
-        y: [1, 3, 5],
-        yaxis: 'y2',
-        mode: 'lines',
-        line: {color: '#ff7f0e'}
-    },
-    {
-        name: 'TVOC/eCO2',
-        x: dummyX,
-        y: [400, 600, 800],
-        yaxis: 'y3',
-        mode: 'lines',
-        line: {color: '#2ca02c'}
-    }
-];
+		self.data = [];
 		self.layout = {
 			autosize: true,
 			showlegend: false,
