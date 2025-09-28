@@ -65,38 +65,7 @@ $(function() {
 			showlegend: false,
 			/* legend: {"orientation": "h"}, */
 			xaxis: { type:"date", tickformat:"%H:%M:%S", automargin: true, title: {standoff: 0}, linecolor: 'black', linewidth: 2, mirror: true },
-			yaxis: {
-				title: 'Temperature (°C)',
-				side: 'left',
-				type: "linear",
-				automargin: true,
-				linecolor: 'black',
-				linewidth: 2,
-				mirror: true,
-				autorange: true
-			},
-			yaxis2: {
-				title: 'AQI (1-5)',
-				overlaying: 'y',
-				side: 'right',
-				range: [0, 6], // Fixed range for AQI
-				type: "linear",
-				automargin: true,
-				linecolor: 'black',
-				linewidth: 2,
-				mirror: true
-			},
-			yaxis3: {
-				title: 'TVOC (ppb) / eCO2 (ppm)',
-				overlaying: 'y',
-				side: 'right',
-				position: 0.85, // Offset from right edge
-				type: "linear",
-				automargin: true,
-				linecolor: 'black',
-				linewidth: 2,
-				mirror: true
-			},
+			yaxis: { type:"linear", automargin: true, title: {standoff: 0}, linecolor: 'black', linewidth: 2, mirror: true, autorange: true },
 			margin: { l:35, r:30, b:0, t:20, pad:5 },
 			images: [{"source": "/static/img/graph-background.png",
 					"xref": "paper",
@@ -132,40 +101,6 @@ $(function() {
 		};
 
 		Plotly.newPlot('plotlytempgraph', self.data, self.layout, self.options);
-
-        // Dummy data for each axis
-        const now = new Date();
-        const dummyX = [now, new Date(now.getTime() + 60000), new Date(now.getTime() + 120000)];
-
-        const dummyTraces = [
-            {
-                name: 'Temperature',
-                x: dummyX,
-                y: [20, 25, 30],
-                yaxis: 'y',
-                mode: 'lines',
-                line: {color: '#1f77b4'}
-            },
-            {
-                name: 'AQI',
-                x: dummyX,
-                y: [1, 3, 5],
-                yaxis: 'y2',
-                mode: 'lines',
-                line: {color: '#ff7f0e'}
-            },
-            {
-                name: 'TVOC/eCO2',
-                x: dummyX,
-                y: [400, 600, 800],
-                yaxis: 'y3',
-                mode: 'lines',
-                line: {color: '#2ca02c'}
-            }
-        ];
-
-        // Add the dummy traces to the graph
-        Plotly.addTraces('plotlytempgraph', dummyTraces);
 
         self.settingsViewModel.addNameMapping = function() {
             self.settingsViewModel.settings.plugins.plotlytempgraph.name_map.push({"identifier": ko.observable(""),
