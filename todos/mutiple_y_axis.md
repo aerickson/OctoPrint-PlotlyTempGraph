@@ -1,5 +1,39 @@
 # Multi-Y-Axis Implementation Plan for OctoPrint-PlotlyTempGraph
 
+## Overview
+
+```
+// In the layout configuration
+yaxis: {
+  title: 'Temperature (°C)',
+  side: 'left'
+},
+yaxis2: {
+  title: 'AQI (1-5)',
+  overlaying: 'y',
+  side: 'right',
+  range: [0, 6]  // Fixed range for AQI
+},
+yaxis3: {
+  title: 'TVOC (ppb) / eCO2 (ppm)',
+  overlaying: 'y',
+  side: 'right',
+  position: 0.85  // Offset from right edge
+}
+
+// For each trace, specify which axis:
+{
+  name: 'AQI',
+  y: aqiData,
+  yaxis: 'y2'
+},
+{
+  name: 'eCO2',
+  y: co2Data,
+  yaxis: 'y3'
+}
+```
+
 ## 1. Update Plotly Layout Configuration
 - Edit `octoprint_plotlytempgraph/static/js/plotlytempgraph.js`.
 - Add definitions for each required y-axis:
